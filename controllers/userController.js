@@ -24,8 +24,12 @@ module.exports = {
     // Getting users
     getAllUsers: async (req, res) => {
         try {
-            const users = await User.findAll({});
-            res.json(users);
+            const usersData = await User.findAll({});
+            const users = usersData.map(user => user.get({ plain: true }));
+            // Specify which handlebars file you want to render - 2nd param is an object that we are getting from db
+            res.render('allUsers', {
+                users,
+                favoriteFood: 'Udon', });
         } catch (e) {
             res.json(e);
         }
