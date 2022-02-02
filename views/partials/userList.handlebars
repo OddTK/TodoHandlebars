@@ -1,0 +1,10 @@
+<ul>
+    {{#each users as |user|}}
+        <li>
+            <p>User id: {{user.id}}</p>
+            {{!-- list the helper before the argument --}}
+            <p>Username: {{toUpperCase user.username}}</p>
+            <p>User email: {{user.email}}</p>
+        </li>
+    {{/each}}
+</ul>

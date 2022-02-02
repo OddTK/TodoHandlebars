@@ -26,7 +26,7 @@ module.exports = {
         try {
             const usersData = await User.findAll({});
             const users = usersData.map(user => user.get({ plain: true }));
-            // Specify which handlebars file you want to render - 2nd param is an object that we are getting from db
+            // Specify which handlebars file you want to render - 2nd param is an object of variables we have access to
             res.render('allUsers', {
                 users,
                 favoriteFood: 'Udon', });
