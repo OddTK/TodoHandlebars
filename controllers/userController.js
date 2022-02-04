@@ -57,6 +57,7 @@ module.exports = {
 			if (userFound.password === req.body.password) {
 				console.log('im hit', 75);
 				req.session.save(() => {
+					req.session.loggedIn = true;
 					req.session.user = userFound;
 					res.json({ success: true });
 				});
