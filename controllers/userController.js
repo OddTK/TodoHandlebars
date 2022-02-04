@@ -96,7 +96,12 @@ module.exports = {
 			return res.redirect('/todos');
 		}
 		res.render('signUp');
-	}
+	},
+	logout: (req, res) => {
+		req.session.destroy(() => {
+			res.send({ status: true });
+		});
+	},
 }
 // /signup
 // Create a function in the controller that checks if a user is already logged in
