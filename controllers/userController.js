@@ -42,10 +42,15 @@ module.exports = {
 		}
 	},
 	login: async (req, res) => {
+
 		console.log(req.body);
 		try {
 			//	first find the user with the given email address
-			const userData = await User.findOne({ email: req.body.email });
+			const userData = await User.findOne({
+				where: {
+					email: req.body.email
+				}
+			});
 			const userFound = userData.get({ plain: true });
 
 			console.log(userFound);
@@ -55,7 +60,6 @@ module.exports = {
 			console.log(userFound.password, 72);
 			console.log(req.body.password, 73);
 			if (userFound.password === req.body.password) {
-				console.log('im hit', 75);
 				req.session.save(() => {
 					req.session.loggedIn = true;
 					req.session.user = userFound;
@@ -75,7 +79,7 @@ module.exports = {
 				username,
 				password,
 			});
-			const user = createdUser.get( { plain: true });
+			const user = createdUser.get({ plain: true });
 			req.session.save(() => {
 				req.session.loggedIn = true;
 				req.session.user = user;
